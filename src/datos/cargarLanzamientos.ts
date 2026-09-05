@@ -10,8 +10,10 @@ const CLAVE_ENDPOINT = 'novedades-rock:endpoint'
 const CLAVE_COPIA = 'novedades-rock:copia-datos'
 const CLAVE_ACTUALIZADO = 'novedades-rock:actualizado'
 
-/* Se rellena al desplegar el Apps Script (Bloque 6); puede sobrescribirse en Ajustes. */
-export const ENDPOINT_POR_DEFECTO = ''
+/* Endpoint del Apps Script desplegado en la cuenta de Iñigo (Bloque 6);
+   puede sobrescribirse en Ajustes. */
+export const ENDPOINT_POR_DEFECTO =
+  'https://script.google.com/macros/s/AKfycbwgk7L2mBdi7R4wR3JwITvZ3FrGJpg88BoUwmY-lSJCH4HemC2Y7OCkLXX2P33jdX0opQ/exec'
 
 export function endpointConfigurado(): string {
   try {
