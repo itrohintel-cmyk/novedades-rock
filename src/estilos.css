@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+/* Paleta con dos temas: oscuro (por defecto) y claro (html.claro). */
+:root {
+  --fondo: #0e0e12;
+  --tarjeta: #1a1a21;
+  --borde: #2a2a33;
+  --texto: #f3f1ea;
+  --texto-suave: #a8a296;
+  --acento: #e8a33d;
+  --acento-texto: #1c1409;
+}
+
+html.claro {
+  --fondo: #faf7f2;
+  --tarjeta: #ffffff;
+  --borde: #e4dfd5;
+  --texto: #1c1b18;
+  --texto-suave: #6b665c;
+  --acento: #c07f1a;
+  --acento-texto: #ffffff;
+}
+
+/* Los tokens quedan disponibles como clases de Tailwind (bg-fondo, text-texto…). */
+@theme inline {
+  --color-fondo: var(--fondo);
+  --color-tarjeta: var(--tarjeta);
+  --color-borde: var(--borde);
+  --color-texto: var(--texto);
+  --color-suave: var(--texto-suave);
+  --color-acento: var(--acento);
+  --color-acento-texto: var(--acento-texto);
+  /* Tramos de puntuación (sección 7 del PLAN): ≥8 verde, 6-7,9 ámbar, <6 gris. */
+  --color-nota-alta: #3fa65b;
+  --color-nota-media: #e8a33d;
+  --color-nota-baja: #6e6e78;
+}
+
+html {
+  background-color: var(--fondo);
+  color-scheme: dark;
+}
+
+html.claro {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* Letra generosa: Iñigo usa la app en el móvil a primera hora. */
+  font-size: 17px;
+  background-color: var(--fondo);
+  color: var(--texto);
+}
