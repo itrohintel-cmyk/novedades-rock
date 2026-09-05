@@ -1,0 +1,49 @@
+[
+  {
+    "id": "2026-09-04-trueno-iberico-forjado-en-la-tormenta",
+    "fecha_lanzamiento": "2026-09-04",
+    "fecha_deteccion": "2026-09-06",
+    "artista": "Trueno Ibérico",
+    "titulo": "Forjado en la Tormenta",
+    "anio": 2026,
+    "genero": "heavy-metal",
+    "subgenero": "power-metal",
+    "tipo_artista": "CLASICO",
+    "pais": "España",
+    "sello": "Discos Yunque",
+    "es_reedicion": false,
+    "portada_url": "https://ejemplo.invalid/portadas/forjado-en-la-tormenta.jpg",
+    "resumen": "EJEMPLO: entrada ficticia para probar la app; este disco y este grupo no existen.",
+    "tracklist_destacada": ["Martillo y Fragua", "La Última Colada", "Acero Vivo"],
+    "puntuaciones": [
+      { "fuente": "Revista Ficticia del Metal", "valor_original": "4/5", "sobre_10": 8.0, "url": "https://ejemplo.invalid/resenas/forjado" },
+      { "fuente": "Blog de Ejemplo", "valor_original": "7.5/10", "sobre_10": 7.5, "url": "https://ejemplo.invalid/blog/forjado" }
+    ],
+    "puntuacion_media": 7.75,
+    "youtube_video_url": "https://www.youtube.com/watch?v=EJEMPLO0001",
+    "youtube_music_url": "https://music.youtube.com/playlist?list=EJEMPLO0001",
+    "fuentes": ["https://ejemplo.invalid/noticias/trueno-iberico"]
+  },
+  {
+    "id": "2026-09-04-carretera-perdida-polvo-y-whisky",
+    "fecha_lanzamiento": "2026-09-04",
+    "fecha_deteccion": "2026-09-06",
+    "artista": "Carretera Perdida",
+    "titulo": "Polvo y Whisky",
+    "anio": 2026,
+    "genero": "rock-sureno",
+    "subgenero": null,
+    "tipo_artista": "NUEVO",
+    "pais": null,
+    "sello": null,
+    "es_reedicion": false,
+    "portada_url": null,
+    "resumen": "EJEMPLO: entrada ficticia sin portada ni puntuaciones, para probar los huecos N/D.",
+    "tracklist_destacada": [],
+    "puntuaciones": [],
+    "puntuacion_media": null,
+    "youtube_video_url": null,
+    "youtube_music_url": null,
+    "fuentes": ["https://ejemplo.invalid/noticias/carretera-perdida"]
+  }
+]

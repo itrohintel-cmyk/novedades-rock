@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Fichero diario de lanzamientos — NOVEDADES ROCK",
+  "description": "Contrato del fichero AAAA-MM-DD.json que la tarea programada de Claude Cowork guarda cada día en la carpeta NOVEDADES_ROCK/ de Google Drive. Es un array de lanzamientos; puede estar vacío ([]) si no hay novedades. Todos los campos existen siempre: lo que no se conoce va como null, NUNCA se rellena con estimaciones ni datos inventados.",
+  "type": "array",
+  "items": { "$ref": "#/definitions/lanzamiento" },
+  "definitions": {
+    "lanzamiento": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "fecha_lanzamiento",
+        "fecha_deteccion",
+        "artista",
+        "titulo",
+        "anio",
+        "genero",
+        "subgenero",
+        "tipo_artista",
+        "pais",
+        "sello",
+        "es_reedicion",
+        "portada_url",
+        "resumen",
+        "tracklist_destacada",
+        "puntuaciones",
+        "puntuacion_media",
+        "youtube_video_url",
+        "youtube_music_url",
+        "fuentes"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}-[a-z0-9]+(-[a-z0-9]+)*$",
+          "description": "fecha_lanzamiento + slug del artista + slug del título, en minúsculas y con guiones. Ej.: 2026-09-04-nombre-artista-titulo-disco. Sirve para deduplicar entre días."
+        },
+        "fecha_lanzamiento": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "Fecha oficial de publicación del disco (AAAA-MM-DD)."
+        },
+        "fecha_deteccion": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "Día en que la tarea lo detectó (AAAA-MM-DD). Coincide con el nombre del fichero."
+        },
+        "artista": { "type": "string", "minLength": 1 },
+        "titulo": { "type": "string", "minLength": 1 },
+        "anio": {
+          "type": "integer",
+          "minimum": 1950,
+          "maximum": 2100,
+          "description": "Año de esta edición (en una reedición, el año de la reedición; el año original se menciona en el resumen)."
+        },
+        "genero": {
+          "enum": [
+            "heavy-metal",
+            "hard-rock",
+            "glam",
+            "sleaze",
+            "rock-sureno",
+            "gothic-metal",
+            "rock-and-roll"
+          ],
+          "description": "Taxonomía de la sección 5.2 del PLAN. Thrash: solo el clásico de corte heavy, dentro de heavy-metal. Excluidos siempre: punk y derivados, pop, metalcore, nu-metal, deathcore, clásica, latino, electrónica, hip hop."
+        },
+        "subgenero": {
+          "type": ["string", "null"],
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+          "description": "Slug libre en minúsculas (ej.: power-metal, aor, thrash-clasico). null si no aplica."
+        },
+        "tipo_artista": {
+          "enum": ["NUEVO", "CLASICO"],
+          "description": "NUEVO = grupo novel que está despuntando; CLASICO = grupo consolidado."
+        },
+        "pais": { "type": ["string", "null"], "description": "País del artista, en castellano. null si no se conoce." },
+        "sello": { "type": ["string", "null"], "description": "Sello discográfico. null si no se conoce." },
+        "es_reedicion": { "type": "boolean", "description": "true solo para reediciones relevantes de discos clásicos." },
+        "portada_url": {
+          "type": ["string", "null"],
+          "pattern": "^https://",
+          "description": "URL https de la portada. Preferir Cover Art Archive (https://coverartarchive.org/release-group/<mbid>/front-500) o la ficha de Discogs/Last.fm. null si no hay portada verificada."
+        },
+        "resumen": {
+          "type": ["string", "null"],
+          "maxLength": 300,
+          "description": "Una línea en castellano sobre por qué el disco es relevante. null si no hay nada que decir con fundamento."
+        },
+        "tracklist_destacada": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "maxItems": 5,
+          "description": "3-5 títulos de temas destacados. Array vacío si no se conoce el tracklist."
+        },
+        "puntuaciones": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/puntuacion" },
+          "description": "Solo puntuaciones REALES publicadas por medios (tabla 5.3 del PLAN). Array vacío si aún no hay reseñas con nota."
+        },
+        "puntuacion_media": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Media aritmética de los sobre_10 de puntuaciones, con 1-2 decimales. null si puntuaciones está vacío. NUNCA se estima."
+        },
+        "youtube_video_url": {
+          "type": ["string", "null"],
+          "pattern": "^https://((www\\.)?youtube\\.com|youtu\\.be)/",
+          "description": "Vídeo o adelanto del disco en YouTube. null si no se ha encontrado uno real."
+        },
+        "youtube_music_url": {
+          "type": ["string", "null"],
+          "pattern": "^https://music\\.youtube\\.com/",
+          "description": "Álbum en YouTube Music (playlist o browse). null si no se ha encontrado."
+        },
+        "fuentes": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^https?://" },
+          "minItems": 1,
+          "description": "URLs de donde salió la información. OBLIGATORIO: mínimo una. Aquí van también las reseñas sin nota numérica."
+        }
+      }
+    },
+    "puntuacion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fuente", "valor_original", "sobre_10", "url"],
+      "properties": {
+        "fuente": { "type": "string", "minLength": 1, "description": "Nombre del medio (Kerrang!, Metal Storm…)." },
+        "valor_original": { "type": "string", "minLength": 1, "description": "Nota tal y como la publicó el medio (ej.: 4/5, 7.9/10, 85%)." },
+        "sobre_10": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Conversión a escala 0-10 según la tabla 5.3 del PLAN (x/5 → ×2; % → ÷10; x/10 → directa)."
+        },
+        "url": { "type": ["string", "null"], "pattern": "^https?://", "description": "Enlace a la reseña. null solo si no hay enlace público." }
+      }
+    }
+  }
+}
