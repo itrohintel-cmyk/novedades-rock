@@ -1,0 +1,15 @@
+# Dependencias y builds
+node_modules/
+dist/
+dev-dist/
+
+# Ficheros del sistema
+.DS_Store
+Thumbs.db
+
+# Credenciales locales de clasp (nunca se suben)
+.clasprc.json
+apps-script/.clasp.json
+
+# Logs
+*.log
