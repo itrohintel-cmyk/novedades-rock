@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Icono de Novedades Rock: púa de guitarra ámbar sobre fondo casi negro.
+       Dibujo propio, sin logotipos de terceros. -->
+  <defs>
+    <linearGradient id="pua" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f2b95c" />
+      <stop offset="1" stop-color="#d88f1f" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="#0e0e12" />
+  <path
+    d="M256 452 C 152 384, 92 282, 92 192 C 92 108, 164 60, 256 60 C 348 60, 420 108, 420 192 C 420 282, 360 384, 256 452 Z"
+    fill="url(#pua)"
+  />
+  <path
+    d="M256 404 C 180 348, 136 268, 136 196 C 136 132, 190 96, 256 96 C 322 96, 376 132, 376 196 C 376 268, 332 348, 256 404 Z"
+    fill="none"
+    stroke="#0e0e12"
+    stroke-width="14"
+    opacity="0.35"
+  />
+</svg>
